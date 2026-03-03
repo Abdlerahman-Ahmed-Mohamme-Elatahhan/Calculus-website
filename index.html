@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leibniz Calculus Archive</title>
+</head>
+<body>
+
+    <center>
+        <marquee scrollamount="10">dx → 0 | THE POWER RULE | ∫ f(x)dx | LIMITS ♾️</marquee>
+        <h1>Gottfried Wilhelm Leibniz: The Calculus Lab</h1>
+        
+        <img src="leibniz.jpg" alt="Leibniz" width="250" border="10">
+        <p><i>"Nature does not make leaps."</i></p>
+    </center>
+
+    <hr>
+
+    <h3>Mathematical Visualizations</h3>
+    <center>
+        <img src="calc.jpg" alt="Graph" width="300" border="2">
+        <img src="integral.jpg" alt="Integral" width="200" border="2">
+    </center>
+
+    <dl>
+        <dt><b>The Derivative</b></dt>
+        <dd>Represented by Leibniz as <mark>dy/dx</mark>, showing the rate of change.</dd>
+        
+        <dt><b>The Integral</b></dt>
+        <dd>The symbol <big>∫</big> was chosen by Leibniz as an elongated "S" for "summa."</dd>
+    </dl>
+
+    <hr>
+
+    <h3>Derivative Cheat Sheet</h3>
+    <table border="1" cellpadding="10">
+        <caption>Standard Leibniz Notation</caption>
+        <thead>
+            <tr>
+                <th>Function f(x)</th>
+                <th>Differentiation</th>
+                <th>Result</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>x<sup>n</sup></td>
+                <td>d/dx [x<sup>n</sup>]</td>
+                <td>nx<sup>n-1</sup></td>
+            </tr>
+            <tr>
+                <td>sin(x)</td>
+                <td>d/dx [sin(x)]</td>
+                <td>cos(x)</td>
+            </tr>
+            <tr>
+                <td>e<sup>x</sup></td>
+                <td>d/dx [e<sup>x</sup>]</td>
+                <td>e<sup>x</sup></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h3>Integration Categories</h3>
+    <img src="integral_types.jpg" alt="Integral Types" width="450" border="1">
+    
+    <ul>
+        <li><b>Definite:</b> Area under the curve between two points.</li>
+        <li><b>Indefinite:</b> The general form of the antiderivative (+ C).</li>
+    </ul>
+
+    <hr>
+
+    <h3>Infinite Limit Visualizer</h3>
+    <p>Watch the value of 1/x as x approaches <abbr title="Infinity">∞</abbr>:</p>
+    
+    <button onclick="runLimit()">Start Calculation</button>
+    <p>Current Result: <samp id="limitResult">1.0000</samp></p>
+
+    <dialog id="calcModal">
+        <h2>Limit Calculation Complete</h2>
+        <p>The function has converged to <b>0</b>.</p>
+        <p>Press <kbd>Esc</kbd> to return.</p>
+        <button onclick="document.getElementById('calcModal').close()">Close</button>
+    </dialog>
+
+    <hr>
+
+    <h3>System Performance</h3>
+    <label>Processing Math:</label>
+    <progress id="calcBar" value="0" max="100"></progress>
+    <br><br>
+    <label>Accuracy Confidence:</label>
+    <meter min="0" max="100" low="30" high="80" optimum="100" value="95"></meter>
+
+    <hr>
+    <p>Data provided by <abbr title="Mathematical Association">MA</abbr>.</p>
+    <p><cite>Source: Leibniz, G. W. (1684) "Nova Methodus"</cite></p>
+
+    <script>
+        function runLimit() {
+            var res = document.getElementById('limitResult');
+            var bar = document.getElementById('calcBar');
+            var x = 1;
+            bar.value = 0;
+
+            var interval = setInterval(function() {
+                x = x * 2;
+                var val = 1 / x;
+                res.innerText = val.toFixed(6);
+                bar.value += 10;
+                
+                if (bar.value >= 100) {
+                    clearInterval(interval);
+                    document.getElementById('calcModal').showModal();
+                }
+            }, 300);
+        }
+    </script>
+
+</body>
+</html>
